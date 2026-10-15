@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta extraída da capa do álbum */
+  --color-preto: #252222;
+  --color-asfalto: #3e2a28;
+  --color-laranja: #874832;
+  --color-vinho: #9b352c;
+  --color-areia: #b98b53;
+  --color-creme: #fceeb5;
+  --color-branco-quente: #f8f8e1;
+  --color-azul: #1c72ba;
+  --color-azul-claro: #44a3da;
+
+  /* Tipografia */
+  --font-titulo: "Stardos Stencil", serif;
+  --font-texto: "Barlow Condensed", sans-serif;
+
+  /* Animações */
+  --animate-subir: subir 0.8s ease-out both;
+  --animate-flutuar: flutuar 4s ease-in-out infinite;
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes subir {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes flutuar {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(1deg);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-branco-quente);
+  color: var(--color-preto);
+  font-family: var(--font-texto);
+}
+
+/* Textura de grão (rua, anos 90) */
+.grao {
+  position: relative;
+}
+.grao::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
